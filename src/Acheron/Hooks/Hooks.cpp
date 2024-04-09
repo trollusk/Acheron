@@ -198,14 +198,17 @@ namespace Acheron
 		}
 		if (inc_damage < 0 && a_target->GetActorValue(RE::ActorValue::kHealth) <= fabs(inc_damage)) {
 			auto aggressor = GetNearValidAggressor(a_target);
-			if (!aggressor || !Validation::ValidatePair(a_target, aggressor))
-				return;
-			if (GetProcessType(aggressor, true) != ProcessType::Lethal)
-				return;
-			if (!HandleLethal(a_target, aggressor))
-				return;
-			if (!Processing::RegisterDefeat(a_target, aggressor))
-				return;
+            if (aggressor)
+			{
+                if (!Validation::ValidatePair(a_target, aggressor))
+                    return;
+                if (GetProcessType(aggressor, true) != ProcessType::Lethal)
+                    return;
+                if (!HandleLethal(a_target, aggressor))
+                    return;
+                if (!Processing::RegisterDefeat(a_target, aggressor))
+                    return;
+            }
 			RemoveDamagingSpells(a_target);
 		}
 	}

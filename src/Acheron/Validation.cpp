@@ -133,8 +133,8 @@ namespace Acheron
 	{
 		if (a_victim->IsDead() || a_aggressor->IsDead())
 			return false;
-		if (a_victim->IsInKillMove() || a_aggressor->IsInKillMove())
-			return false;
+		// if (a_victim->IsInKillMove() || a_aggressor->IsInKillMove())
+		// 	return false;
 		if (a_victim->IsPlayerRef()) {
 			if (!Settings::bPlayerDefeat) {
 				return false;
